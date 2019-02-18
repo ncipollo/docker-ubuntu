@@ -23,6 +23,7 @@ RUN apt-get install -y \
     unzip \
     vim \
     wget \
+    zip \
     zlib1g:i386 \ 
     zsh
 
@@ -38,6 +39,8 @@ RUN mkdir /root/.ssh
 RUN echo "$ssh_key" > /root/.ssh/id_rsa
 RUN chmod 600 /root/.ssh/id_rsa
 
-WORKDIR /root
+# Install Kotlin
+COPY install_kotlin.sh install_kotlin.sh
+RUN bash install_kotlin.sh
 
 CMD ["zsh"]
